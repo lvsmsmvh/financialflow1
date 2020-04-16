@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">FinancialFlow</string>
+    <string name="tab_text_1">HISTORY</string>
+    <string name="tab_text_2">WALLETS</string>
+    <string name="tab_text_3">STATISTICS</string>
+    <string-array name="currencies">
+        <item>UAH</item>
+        <item>RUB</item>
+        <item>USD</item>
+        <item>EUR</item>
+    </string-array>
+</resources>
