@@ -10,6 +10,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.example.recycletest3.ui.main.SectionsPagerAdapter;
 public class MainActivity extends AppCompatActivity {
 
 
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,5 +53,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private long backPressedTime;
+    @Override
+    public void onBackPressed(){
+        if(backPressedTime + 1000 > System.currentTimeMillis()) {
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+            return;
+        } else {
+            Toast.makeText(getBaseContext(), "Press back again to exit.", Toast.LENGTH_SHORT).show();
+        }
+
+        backPressedTime = System.currentTimeMillis();
     }
 }

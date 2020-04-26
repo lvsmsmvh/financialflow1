@@ -60,7 +60,10 @@
         android:layout_marginEnd="64dp"
         android:text="Add expense"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"/>
 
     <Spinner
         android:id="@+id/spinnerTypeExp"
@@ -79,5 +82,8 @@
         android:layout_marginBottom="21dp"
         android:text="Switch to income"
         app:layout_constraintBottom_toTopOf="@+id/spinnerExpenseCur"
-        app:layout_constraintStart_toEndOf="@+id/textViewExp" />
+        app:layout_constraintStart_toEndOf="@+id/textViewExp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
