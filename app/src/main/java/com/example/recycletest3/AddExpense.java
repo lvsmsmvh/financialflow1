@@ -1,7 +1,11 @@
 package com.example.recycletest3;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddExpense extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
@@ -27,17 +32,18 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
 
         // спиннер для выбора типа траты
         final Spinner spinnerTypeExp = findViewById(R.id.spinnerTypeExp);
-        ArrayAdapter<CharSequence> adapterTypeExp = ArrayAdapter.createFromResource(this, R.array.currencies, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterTypeExp = ArrayAdapter.createFromResource(this, R.array.type_exp, android.R.layout.simple_spinner_item);
         adapterTypeExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTypeExp.setAdapter(adapterTypeExp);
         spinnerTypeExp.setOnItemSelectedListener(this);
 
 
         // иниц. кнопок и полей ввода
-        Button save = findViewById(R.id.buttonAddExp);
-        Button switchToInOut = findViewById(R.id.buttonSwitch);
+        final Button save = findViewById(R.id.buttonAddExp);
+        final Button switchToInOut = findViewById(R.id.buttonSwitch);
         final EditText etDesc = findViewById(R.id.editDesc);
         final EditText etMoney = findViewById(R.id.editTextMoneyExp);
+        final                     TextView tvMainText = findViewById(R.id.textViewExp);
 
 
         // обработчики нажатий
@@ -56,6 +62,21 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
             @Override
             public void onClick(View v) {
 
+                String a = switchToInOut.getText().toString();
+
+                if (a.equals("Income")) {
+                    spinnerTypeExp.setVisibility(View.GONE);
+                    //Toast.makeText(getApplicationContext(), "Switched to expense.", Toast.LENGTH_SHORT).show();
+                    tvMainText.setText("INCOME:");
+                    switchToInOut.setText("Expense");
+                }
+
+                if (a.equals("Expense")) {
+                    spinnerTypeExp.setVisibility(View.VISIBLE);
+                    //Toast.makeText(getApplicationContext(), "Switched to income.", Toast.LENGTH_SHORT).show();
+                    tvMainText.setText("EXPENSE:");
+                    switchToInOut.setText("Income");
+                }
             }
         });
     }

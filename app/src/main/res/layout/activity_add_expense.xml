@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,10 +9,10 @@
         android:id="@+id/textViewExp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="120dp"
-        android:text="Adding an expense:"
-        android:textSize="20sp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="84dp"
+        android:text="EXPENSE:"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,57 +32,60 @@
 
     <EditText
         android:id="@+id/editTextMoneyExp"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="206dp"
+        android:layout_height="58dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Set amount of money"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewExp" />
 
-    <Spinner
-        android:id="@+id/spinnerExpenseCur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="180dp"
-        app:layout_constraintStart_toEndOf="@+id/editTextMoneyExp"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonAddExp"
-        android:layout_width="wrap_content"
+        android:layout_width="122dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="348dp"
-        android:layout_marginEnd="64dp"
-        android:text="Add expense"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/custom_button"
+        android:text="Add"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:background="@drawable/custom_button"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTypeExp" />
 
     <Spinner
         android:id="@+id/spinnerTypeExp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDesc" />
 
     <Button
         android:id="@+id/buttonSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="31dp"
-        android:layout_marginBottom="21dp"
-        android:text="Switch to income"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerExpenseCur"
-        app:layout_constraintStart_toEndOf="@+id/textViewExp"
+        android:layout_width="101dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/custom_button"
+        android:text="Income"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:background="@drawable/custom_button"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerExpenseCur"
+        android:layout_width="113dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toEndOf="@+id/editTextMoneyExp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewExp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

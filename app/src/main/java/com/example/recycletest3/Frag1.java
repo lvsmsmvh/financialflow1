@@ -40,7 +40,7 @@ public class Frag1 extends Fragment {
         super.onCreate(savedInstanceState);
 
         listOfItems = new ArrayList<>();
-        listOfItems.add(new ActionItem("McDonalds", "21.01.2020", "OshadBank", "-200.00 UAH"));
+        listOfItems.add(new ActionItem("Bank", "21.01.2020", "OshadBank", "+200.00 UAH"));
         listOfItems.add(new ActionItem("Food", "22.01.2020", "PrivatBank", "-110.00 UAH"));
         listOfItems.add(new ActionItem("Internet", "22.01.2020", "PrivatBank", "-35.00 UAH"));
     }

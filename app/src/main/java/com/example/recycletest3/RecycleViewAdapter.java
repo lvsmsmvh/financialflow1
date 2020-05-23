@@ -1,10 +1,12 @@
 package com.example.recycletest3;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +42,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         holder.tv_date.setText(mData.get(position).getDate());
         holder.tv_card.setText(mData.get(position).getCard());
         holder.tv_amount.setText(mData.get(position).getAmount());
+        String s = mData.get(position).getAmount();
+        //Toast.makeText(mContext, s.substring(0,1), Toast.LENGTH_SHORT).show();
+        if(s.substring(0, 1).equals("-")){
+            //Toast.makeText(mContext, "red", Toast.LENGTH_SHORT).show();
+            holder.setRed();
+        }
+        if(s.substring(0, 1).equals("+")){
+            holder.setGreen();
+        }
+
     }
 
     @Override
@@ -48,7 +60,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
 
         private TextView tv_name;
         private TextView tv_date;
@@ -62,6 +73,14 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
              tv_date = (TextView) itemView.findViewById(R.id.tvDate);
              tv_card = (TextView) itemView.findViewById(R.id.tvCard);
              tv_amount = (TextView) itemView.findViewById(R.id.tvAmount);
+         }
+
+         public void setRed(){
+             tv_amount.setTextColor(Color.parseColor("#C0392B"));
+         }
+
+         public void setGreen(){
+             tv_amount.setTextColor(Color.parseColor("#229954"));
          }
      }
 }

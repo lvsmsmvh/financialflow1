@@ -6,4 +6,8 @@
     <color name="blueTabColor">#6200ED</color>
     <color name="white">#FAFAFA</color>
     <color name="btn_pressed">#6A3EE7</color>
+    <color name="orange">#E67E22</color>
+    <color name="green">#196F3D</color>
+    <color name="darkred">#641E16</color>
+    <color name="darkgreen">#145A32</color>
 </resources>
