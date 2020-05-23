@@ -25,18 +25,9 @@ public class AddWallet extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_wallet);
 
-         /**
-         * spinner for selection a currency
-         */
-        final Spinner spinner = findViewById(R.id.spinnerWallet);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currencies, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
 
         /**
-         * initialization of all button and edittexts
+         * initialization of all button and edit texts
          */
         Button save = findViewById(R.id.button);
         final EditText etName = findViewById(R.id.editTextName);
@@ -51,8 +42,7 @@ public class AddWallet extends AppCompatActivity implements AdapterView.OnItemSe
             public void onClick(View v) {
                 String name = etName.getText().toString();
                 String money = etMoney.getText().toString();
-                String spinnerText = spinner.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(), name + " "+ money + " " + spinnerText, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), name + " "+ money, Toast.LENGTH_SHORT).show();
             }
         });
     }
