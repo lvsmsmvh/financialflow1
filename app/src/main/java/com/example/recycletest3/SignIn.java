@@ -18,11 +18,27 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+/**
+ * Class that allows to Sign in
+ */
+
 public class SignIn extends AppCompatActivity {
 
+    /**
+     * parameter indicating whether user signed in or no
+     */
     int RC_SIGN_IN = 0;
+
+    /**
+     * button Sign In
+     */
     SignInButton signInButton;
     GoogleSignInClient mGoogleSignInClient;
+
+    /**
+     * method onCreate for SignIn class
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +50,10 @@ public class SignIn extends AppCompatActivity {
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        /**
+         * onClick listener for sign in button
+         */
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +63,9 @@ public class SignIn extends AppCompatActivity {
         });
 
 
+        /**
+         * Intializators for all edit texts and buttons
+         */
         final EditText etEmail = findViewById(R.id.et_email);
         final EditText etPass = findViewById(R.id.et_pass);
         Button btnLogin = findViewById(R.id.btn_login);
@@ -63,11 +86,21 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
+    /**
+     * method that is called when a button pressed
+     */
     private void SignIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+
+    /**
+     * method that checks if user signed in
+     * @param requestCode requestCode.
+     * @param resultCode resultCode.
+     * @param data data of intent.
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -79,6 +112,10 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
+    /**
+     * method that tries to log in
+     * @param completedTask google task.
+     */
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
@@ -90,7 +127,9 @@ public class SignIn extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * method that starts main activity if user logged in
+     */
     @Override
     protected void onStart() {
 

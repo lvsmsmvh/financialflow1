@@ -14,15 +14,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class containing inner data of 2nd page
+ */
 public class Frag2 extends Fragment {
     View v;
     private RecyclerView recyclerView;
     private List<CardItem> listOfItems;
 
-
+    /**
+     * default constructor
+     */
     public Frag2() {
 
     }
+
+    /**
+     * method onCreateView
+     * @param inflater inflates the  layout.
+     * @param container container
+     * @param savedInstanceState saved instance
+     * @return view
+     */
 
     @Nullable
     @Override
@@ -34,7 +47,10 @@ public class Frag2 extends Fragment {
         recyclerView.setAdapter(recycleViewAdapter);
         return v;
     }
-
+    /**
+     * method that fills up recycler view with data
+     * @param savedInstanceState saved instance
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

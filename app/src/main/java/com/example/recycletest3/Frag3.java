@@ -11,13 +11,29 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+/**
+ * class containing inner data of 3rd page
+ */
 public class Frag3 extends Fragment {
+
+    /**
+     * method that fills up recycler view with data
+     * @param savedInstanceState saved instance
+     */
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+
+    /**
+     * method onCreateView
+     * @param inflater inflates the  layout.
+     * @param container container
+     * @param savedInstanceState saved instance
+     * @return view
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

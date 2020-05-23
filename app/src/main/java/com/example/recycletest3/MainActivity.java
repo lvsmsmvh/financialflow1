@@ -18,19 +18,39 @@ import android.widget.Toast;
 
 import com.example.recycletest3.ui.main.SectionsPagerAdapter;
 
+/**
+ * class containing main screen with tabs
+ */
 public class MainActivity extends AppCompatActivity {
 
 
     int i = 0;
+
+    /**
+     * overriding onCreate method
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /**
+         * creating section pages (total 3 pages)
+         */
         final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
+
+        /**
+         * initializing tabs
+         */
         final TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        /**
+         * floating button 'add'
+         */
         FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,8 +75,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * making double click to exit work
+     */
     private long backPressedTime;
     @Override
+
+    /**
+     * method that reads double ckick on Back
+     */
     public void onBackPressed(){
         if(backPressedTime + 1000 > System.currentTimeMillis()) {
             moveTaskToBack(true);

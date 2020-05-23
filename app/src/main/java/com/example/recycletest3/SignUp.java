@@ -24,13 +24,23 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * class for signing up
+ */
 public class SignUp extends AppCompatActivity {
 
+    /**
+     * onCreate method
+     * @param savedInstanceState default.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+        /**
+         * initializing of all needed parameters.
+         */
         final EditText etName = findViewById(R.id.et_name_reg);
         final EditText etEmail = findViewById(R.id.et_email_reg);
         final EditText etPass = findViewById(R.id.et_pass_reg);
@@ -48,9 +58,18 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+    /**
+     * method that signs up a user.
+     * @param name name.
+     * @param email email.
+     * @param password password.
+     */
     public void registerUser(final String name, final String email, final String password) {
 
 
+        /**
+         * method that validates with php scripts
+         */
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 Constants.URL_REGISTER, new Response.Listener<String>() {
             @Override
@@ -79,6 +98,9 @@ public class SignUp extends AppCompatActivity {
             }
         };
 
+        /**
+         * biulding a request queue with given string.
+         */
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

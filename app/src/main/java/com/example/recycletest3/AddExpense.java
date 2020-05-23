@@ -16,21 +16,32 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * class for adding an expense / an income
+ */
 public class AddExpense extends AppCompatActivity  implements AdapterView.OnItemSelectedListener{
 
+    /**
+     * method onCreate
+     * @param savedInstanceState saved instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
 
-        // спиннер для валют
+        /**
+         * spinner for selection a currency
+         */
         final Spinner spinner = findViewById(R.id.spinnerExpenseCur);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.currencies, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-        // спиннер для выбора типа траты
+        /**
+         * spinner for selection a type of an expense
+         */
         final Spinner spinnerTypeExp = findViewById(R.id.spinnerTypeExp);
         ArrayAdapter<CharSequence> adapterTypeExp = ArrayAdapter.createFromResource(this, R.array.type_exp, android.R.layout.simple_spinner_item);
         adapterTypeExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -38,7 +49,9 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
         spinnerTypeExp.setOnItemSelectedListener(this);
 
 
-        // иниц. кнопок и полей ввода
+        /**
+         * initialization of all button and edittexts
+         */
         final Button save = findViewById(R.id.buttonAddExp);
         final Button switchToInOut = findViewById(R.id.buttonSwitch);
         final EditText etDesc = findViewById(R.id.editDesc);
@@ -46,7 +59,10 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
         final                     TextView tvMainText = findViewById(R.id.textViewExp);
 
 
-        // обработчики нажатий
+
+        /**
+         * onClickListener for Save button
+         */
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +74,10 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
             }
         });
 
+
+        /**
+         * onClickListener for switch button
+         */
         switchToInOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,12 +100,22 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
             }
         });
     }
-
+    /**
+     * method that reacts when item is selected on spinner
+     * @param parent parent view.
+     * @param view view.
+     * @param position position.
+     * @param id id.
+     */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
     }
 
+    /**
+     * method that reacts if nothing selected
+     * @param parent parent view.
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 

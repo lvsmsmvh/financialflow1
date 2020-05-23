@@ -14,18 +14,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 
-// для вкладки History
+/**
+ * recycler view adapter for History tab
+ */
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
 
 
     Context mContext;
     List<ActionItem> mData;
 
+    /**
+     * default constructor
+     * @param mContext context.
+     * @param mData data containing list of actions.
+     */
     public RecycleViewAdapter(Context mContext, List<ActionItem> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
 
+
+    /**
+     * overriding  create view holder method
+     * @param parent view
+     * @param viewType viewType.
+     * @return new holder
+     */
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,6 +50,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         return vHolder;
     }
 
+    /**
+     * overrides method that binds data on view holder
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tv_name.setText(mData.get(position).getName());
@@ -54,11 +73,18 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     }
 
+    /**
+     * gets a number of items
+     * @return number of items
+     */
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
+    /**
+     * inner class that initializes all textViews
+     */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tv_name;
