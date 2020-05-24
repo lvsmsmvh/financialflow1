@@ -26,12 +26,13 @@
         android:textSize="25sp"
         app:layout_constraintStart_toEndOf="@+id/editTextMoneyExp"
         app:layout_constraintTop_toBottomOf="@+id/buttonSwitch" />
+
     <EditText
         android:id="@+id/editDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:hint="Description"
@@ -87,6 +88,16 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+
+        android:id="@+id/spinnerChooseWallet"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMoneyExp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

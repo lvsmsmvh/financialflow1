@@ -2,6 +2,7 @@ package com.example.recycletest3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,10 +12,24 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * class for adding a wallet
  */
-public class AddWallet extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddWallet extends AppCompatActivity {
 
     /**
      * method onCreate
@@ -42,29 +57,53 @@ public class AddWallet extends AppCompatActivity implements AdapterView.OnItemSe
             public void onClick(View v) {
                 String name = etName.getText().toString();
                 String money = etMoney.getText().toString();
-                Toast.makeText(getApplicationContext(), name + " "+ money, Toast.LENGTH_SHORT).show();
+                addWallet(User.getInstance(getApplicationContext()).getUserId(),
+                        name, money);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }
 
-    /**
-     * method that reacts when item is selected on spinner
-     * @param parent parent view.
-     * @param view view.
-     * @param position position.
-     * @param id id.
-     */
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
 
     /**
-     * method that reacts if nothing selected
-     * @param parent parent view.
+     * method adding a wallet to database
      */
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+
+    private void addWallet(final Integer id, final String name, final String money){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                Constants.URL_ADD_WALLET,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("id_user", id.toString());
+                params.put("name", name);
+                params.put("balance", money);
+                return params;
+            }
+        };
+
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
 
     }
 }

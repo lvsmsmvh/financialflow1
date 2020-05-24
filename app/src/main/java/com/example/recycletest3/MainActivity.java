@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
      * making double click to exit work
      */
     private long backPressedTime;
-    @Override
 
     /**
      * method that reads double ckick on Back
      */
+    @Override
     public void onBackPressed(){
         if(backPressedTime + 1000 > System.currentTimeMillis()) {
             moveTaskToBack(true);

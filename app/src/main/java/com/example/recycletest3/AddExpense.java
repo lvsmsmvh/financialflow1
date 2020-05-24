@@ -1,13 +1,17 @@
 package com.example.recycletest3;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +19,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * class for adding an expense / an income
@@ -25,10 +31,27 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
      * method onCreate
      * @param savedInstanceState saved instance
      */
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
+
+
+        /**
+         * spinner for selection a wallet
+         */
+        final Spinner spinnerChooseWallet = findViewById(R.id.spinnerChooseWallet);
+        ArrayAdapter<CardItem> adapterChooseWallet = new ArrayAdapter<CardItem>(
+                this, android.R.layout.simple_spinner_item,
+                WalletHolder.getWalletList());
+        //ArrayAdapter<CharSequence> adapterChooseWallet = ArrayAdapter.createFromResource(this, R.array.currencies, android.R.layout.simple_spinner_item);
+        adapterChooseWallet.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerChooseWallet.setAdapter(adapterChooseWallet);
+        spinnerChooseWallet.setOnItemSelectedListener(this);
+
 
         /**
          * spinner for selection a type of an expense
@@ -38,6 +61,7 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
         adapterTypeExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTypeExp.setAdapter(adapterTypeExp);
         spinnerTypeExp.setOnItemSelectedListener(this);
+
 
 
         /**
@@ -60,7 +84,9 @@ public class AddExpense extends AppCompatActivity  implements AdapterView.OnItem
                 String desc = etDesc.getText().toString();
                 String money = etMoney.getText().toString();
                 String spinnerTypeText = spinnerTypeExp.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(), desc + " "+ money + " " + spinnerTypeText, Toast.LENGTH_SHORT).show();
+                String spinnerWallet = spinnerChooseWallet.getSelectedItem().toString();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                //Toast.makeText(getApplicationContext(), desc + " "+ money + " " + spinnerTypeText + spinnerWallet, Toast.LENGTH_SHORT).show();
             }
         });
 

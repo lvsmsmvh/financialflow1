@@ -52,8 +52,6 @@ public class SignUp extends AppCompatActivity {
                 registerUser(
                         etName.getText().toString().trim(), etEmail.getText().toString().trim(),
                         etPass.getText().toString().trim());
-                //Toast.makeText(getApplicationContext(), "Registration completed! Login now.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), SignIn.class));
             }
         });
     }
@@ -77,6 +75,7 @@ public class SignUp extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), SignIn.class));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -101,8 +100,7 @@ public class SignUp extends AppCompatActivity {
         /**
          * biulding a request queue with given string.
          */
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
 }
